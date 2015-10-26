@@ -1,1 +1,47 @@
 @import 'functions';
+
+$primary : #4aa3df;
+// @include transition(all .3s ease);
+body{
+	font-family: 'Raleway', sans-serif;
+}
+.icon{
+	width:50px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	border: 1px solid #fff;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+section{
+	padding: 50px 0;
+}
+header{
+	min-height: 520px;
+	
+	.top{
+		margin-top: 50px;
+		color:#fff;
+		.icon{
+			position: relative;
+			left:50%;
+			margin-left: -25px;
+		}
+	}
+	.bg{
+		position: absolute;
+		height: 520px;
+		width:100%;
+		top:0;
+		z-index: -1;
+		background: url('../img/header.jpeg') top center;
+		background-size: cover;
+		filter: blur(5px);
+		-webkit-filter: blur(5px);
+		-moz-filter: blur(5px);
+		-o-filter: blur(5px);
+		-ms-filter: blur(5px);
+	}
+}
