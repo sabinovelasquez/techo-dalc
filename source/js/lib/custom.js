@@ -2,8 +2,8 @@
 
 var app = angular.module('app', []);
 
-app.directive('countdown', [
-  'Util', '$interval', function(Util, $interval) {
+app.directive('countdown', 
+  ['Util', '$interval', function(Util, $interval) {
     return {
       restrict: 'A',
       scope: {
@@ -22,11 +22,19 @@ app.directive('countdown', [
   }
 ]);
 
+function timing(time){
+  if(time < 10){
+    return '0'+time;
+  }else{
+    return time;
+  }
+}
+
 app.factory('Util', [
   function() {
     return {
       dhms: function(t) {
-        var days, hours, minutes, seconds;
+        var days, hours, minutes, seconds, newsec;
         days = Math.floor(t / 86400);
         t -= days * 86400;
         hours = Math.floor(t / 3600) % 24;
@@ -34,7 +42,7 @@ app.factory('Util', [
         minutes = Math.floor(t / 60) % 60;
         t -= minutes * 60;
         seconds = t % 60;
-        return [days + 'd', hours + 'h', minutes + 'm', seconds + 's'].join(' ');
+        return [days + ' días, ', timing(hours) + ':', timing(minutes) + ':', timing(seconds)].join('');
       }
     };
   }
