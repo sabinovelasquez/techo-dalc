@@ -2,6 +2,14 @@
 
 var app = angular.module('app', []);
 
+function timing(time){
+  if(time < 10){
+    return '0'+time;
+  }else{
+    return time;
+  }
+}
+
 app.directive('countdown', 
   ['Util', '$interval', function(Util, $interval) {
     return {
@@ -22,13 +30,12 @@ app.directive('countdown',
   }
 ]);
 
-function timing(time){
-  if(time < 10){
-    return '0'+time;
-  }else{
-    return time;
-  }
-}
+app.controller('infoCtrl', function($scope, $http) {
+  $http.get("http://www.w3schools.com/angular/customers.php")
+    .success(function(response) {
+      $scope.names = response.records;
+    });
+});
 
 app.factory('Util', [
   function() {

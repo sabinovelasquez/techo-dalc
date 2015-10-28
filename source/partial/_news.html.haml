@@ -4,6 +4,10 @@
 			.col-sm-6
 				%h2.text-center
 					Noticias
+				.info{ :'ng-controller' => "infoCtrl" }
+					%li{"ng-repeat" => "x in names"}
+						{{ x.Name + ', ' + x.Country }}
+
 			.col-sm-6
 				%h2.text-center
 					Blog
