@@ -4,10 +4,17 @@
 			.col-sm-6
 				%h2.text-center
 					Noticias
-				.info{ :'ng-controller' => "infoCtrl" }
-					%li{"ng-repeat" => "x in names"}
-						{{ x.Name + ', ' + x.Country }}
+				.text-muted.text-center
+					Conoce los últimos avances hacia una nueva agenda urbana
+				%ul.info{ :'ng-controller' => "newsCtrl" }
+					%li{"ng-repeat" => "noticia in noticias"}
+						{{ noticia.gsx$noticias.$t }}
 
 			.col-sm-6
 				%h2.text-center
 					Blog
+				.text-muted.text-center
+					Reflexiona junto a nosotros para alcanzar ciudades más inclusivas
+				%ul.info{ :'ng-controller' => "entriesCtrl" }
+					%li{"ng-repeat" => "entrada in entradas"}
+						{{ entrada.gsx$entradas.$t }}

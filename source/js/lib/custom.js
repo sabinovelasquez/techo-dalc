@@ -1,6 +1,16 @@
 'use strict';
 
+var pageId='994782423876423',fbApiId='1514161315573007',fbToken='836ec560d394a3d55ea37ed3a9457994';
+
+var sheetNewsID = '1WzpFRFin-2-spw8Hx7yT-FvOOD0di4kld__JELgtqSk',
+    sheetEntriesID = '1CTo9Bih2V3zlrJycyvKbG1fX5YpUcdMTKq1mNny0veM';
+    
+  
 var app = angular.module('app', []);
+
+function sheetUrl(id){
+  return 'https://spreadsheets.google.com/feeds/list/' + id + '/od6/public/values?alt=json';
+}
 
 function timing(time){
   if(time < 10){
@@ -30,12 +40,26 @@ app.directive('countdown',
   }
 ]);
 
-app.controller('infoCtrl', function($scope, $http) {
-  $http.get("http://www.w3schools.com/angular/customers.php")
+app.controller('infoCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)
     .success(function(response) {
-      $scope.names = response.records;
+      $scope.messages = response.data;
     });
-});
+}]);
+
+app.controller('newsCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get( sheetUrl(sheetNewsID) )
+    .success(function(response) {
+      $scope.noticias = response.feed.entry;
+    });
+}]);
+
+app.controller('entriesCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get( sheetUrl(sheetEntriesID) )
+    .success(function(response) {
+      $scope.entradas = response.feed.entry;
+    });
+}]);
 
 app.factory('Util', [
   function() {
