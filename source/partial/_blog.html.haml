@@ -1,0 +1,8 @@
+.col-sm-6
+	%h2.text-center
+		Blog
+	.text-muted.text-center
+		Reflexiona junto a nosotros para alcanzar ciudades más inclusivas
+	%ul.info{ :'ng-controller' => "entriesCtrl" }
+		%li{"ng-repeat" => "entrada in entradas"}
+			{{ entrada.gsx$entradas.$t }}
