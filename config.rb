@@ -24,12 +24,12 @@ end
 case ENV['TARGET'].to_s.downcase
   when 'production'
     activate :deploy do |deploy|
-    deploy.method = :rsync 
+    deploy.method = :ftp 
     deploy.build_before = true
-    deploy.host = '45.55.240.255'
-    deploy.user = 'sabino'
-    deploy.path = '/var/www/sabino.cl/public_html/clients/techo/dalc'
-    deploy.port     = 22
+    deploy.host = 'ftp.unaciudadparatodxs.org'
+    deploy.user = 'unaciudad@unaciudadparatodxs.org'
+    deploy.password = 'Un5c1ud5d'
+    deploy.path = '/'
     end
   else
     activate :deploy do |deploy|

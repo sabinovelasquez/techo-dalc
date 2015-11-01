@@ -17,9 +17,11 @@ function timing(time){
   }
 }
 
+
+
 var app = angular
 
-.module('app', ['ngRoute','blogControllers'])
+.module('app', ['ngRoute','blogControllers','ui.bootstrap'])
 
 .config(['$routeProvider',
   function($routeProvider) {
@@ -71,7 +73,24 @@ var app = angular
     };
   }
 ])
+.controller('modalCtrl', ['$scope',
+  function($scope) {
 
+    $scope.open = function() {
+      $scope.showModal = true;
+    };
+
+    $scope.ok = function() {
+      $scope.showModal = false;
+    };
+
+    $scope.cancel = function() {
+     $scope.showModal = false;
+      var iframe = document.getElementsByTagName("iframe")[0].contentWindow;
+      iframe.postMessage('{"event":"command","func":"' + 'stopVideo' +   '","args":""}', '*');
+    };
+  }
+])
 .controller('infoCtrl', ['$scope', '$http', 
   function($scope, $http) {
     $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)

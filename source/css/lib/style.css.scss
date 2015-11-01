@@ -1,7 +1,14 @@
 @import 'functions';
 
 $primary : #4aa3df;
-$blue: #2980b9;
+
+
+$lblue: #68b8fc;
+$red: #b62148;
+$green: #8cc52e;
+$yellow: #f3d637;
+$blue: #7dcddb;
+
 // @include transition(all .3s ease);
 body{
 	font-family: 'Roboto', sans-serif;
@@ -27,6 +34,8 @@ h1, h2, h3, h4, h5, h6{
 }
 section{
 	padding: 50px 0;
+}
+.modal{
 }
 header{
 	min-height: 520px;
@@ -86,5 +95,40 @@ header{
 #campaign{
 	color: white;
 	background: $blue;
+	font-size: 1.2em;
+}
+section#collab{
+	.col-img{
+		float: left;
+		width:20%;
+		img{
+			width:80%;
+		}
+	}
+	.signature{
+		max-width: 400px;
+	}
+}
+footer{
+	.blue, .red, .yellow, .green, .lblue{
+		width: 20%;
+		height: 20px;
+		float:left;
+	}
+	.blue{
+		background: $blue;
+	}
+	.red{
+		background: $red;
+	}
+	.yellow{
+		background: $yellow;
+	}
+	.green{
+		background: $green;
+	}
+	.lblue{
+		background: $lblue;
+	}
 }
 

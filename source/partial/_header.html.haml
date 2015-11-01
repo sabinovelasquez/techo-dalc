@@ -1,15 +1,16 @@
-.lang
-	.icon
-		%i.fa.fa-language
+/ .lang
+/ 	.icon
+/ 		%i.fa.fa-language
 %header
 	.container
 		.top.text-center
 			%h1 Derecho a la Ciudad
 			%p Quedan
 			%h2
-				%span.timer{ :'countdown' => '', :'date' => 'October 17, 2017 12:00:00' }
+				%span.timer{ :'countdown' => '', :'date' => 'October 17, 2016 12:00:00' }
 			%p para incidir en la nueva agenda urbana
-			.icon
+			.icon{ :'ng-click' => 'open()' }
 				%i.fa.fa-play
 			Ver video
 	.bg
+

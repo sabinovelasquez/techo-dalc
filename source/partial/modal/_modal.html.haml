@@ -1,0 +1,7 @@
+.modal.fade{ :'modal' => 'showModal' }
+	.modal-dialog.modal-lg
+		.modal-content
+			.embed-responsive.embed-responsive-16by9
+				%iframe.embed-responsive-item{:'allowfullscreen' => 'true', :'frameborder' => 0, :'src' => 'https://www.youtube.com/embed/8psRZqofcao?rel=0&amp&amp;showinfo=0&enablejsapi=1' }
+			%a.btn.btn-default.btn-sm.center-block{ :'ng-click' => 'youtube.player.stopVideo(); cancel()'}
+				Cerrar

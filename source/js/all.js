@@ -1,4 +1,4 @@
 //= require angular
-//= require angular-ui-router
+//= require angular-ui-bootstrap
 //= require underscore
 //= require_tree .
