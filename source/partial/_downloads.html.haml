@@ -30,8 +30,28 @@
 				Hide downloads
 			%span{ :'ng-show' => '!isCollapsed', :'ng-if' => 'idioma == 3'  }
 				Esconder de downloads
-				
+
 	%ul.info{ :'uib-collapse' => 'isCollapsed'}
 		%li{ :'ng-repeat' => 'download in downloads' }
 			%a.download{ :'href' => '{{ download.gsx$link.$t }}', :'target' => '_blank', :'uib-tooltip' => '{{download.gsx$nombre.$t}} - {{download.gsx$fuente.$t }}',  :'tooltip-placement' => 'right' }
 				{{ download.gsx$nombre.$t | limitTo : 50 }}{{download.gsx$nombre.$t.length > 50 ? '...' : ''}}
+	.gallery
+		.row
+			.col-sm-4.vcenter
+				.hover
+					%a{ :'href' => 'img/banners/banner01_ciudad.png', :'target' => 'blank' }
+						.icon
+							%i.fa.fa-download
+				%img.img-responsive{ :'src' => 'img/banners/banner01_ciudad.png' }
+			.col-sm-4.vcenter
+				.hover
+					%a{ :'href' => 'img/banners/banner02_ciudad.png', :'target' => 'blank' }
+						.icon
+							%i.fa.fa-download
+				%img.img-responsive{ :'src' => 'img/banners/banner02_ciudad.png' }
+			.col-sm-4.vcenter
+				.hover
+					%a{ :'href' => 'img/banners/banner03_ciudad.png', :'target' => 'blank' }
+						.icon
+							%i.fa.fa-download
+				%img.img-responsive{ :'src' => 'img/banners/banner03_ciudad.png' }
