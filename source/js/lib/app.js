@@ -1,6 +1,6 @@
 'use strict';
 
-var pageId='994782423876423',fbApiId='1514161315573007',fbToken='836ec560d394a3d55ea37ed3a9457994';
+var pageId='532314866881073',fbApiId='1514161315573007',fbToken='836ec560d394a3d55ea37ed3a9457994';
 
 var sheetInfoID = '1naw4HFJQMkYqqRa5YGiWeq8kB9zO73p6VYpIbkLrXY0',
     sheetNewsID = '1WzpFRFin-2-spw8Hx7yT-FvOOD0di4kld__JELgtqSk',
@@ -89,11 +89,12 @@ var app = angular
     });
   }
 ])
-.controller('infoCtrl', ['$scope', '$http', 
+.controller('fbCtrl', ['$scope', '$http', 
   function($scope, $http) {
-    $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)
+    $http.get('https://graph.facebook.com/'+pageId+'/feed?access_token='+fbApiId+'|'+fbToken)
     .success(function(response) {
-      $scope.messages = response.data;
+      console.log(response.data)
+      $scope.posts = _.reject(response.data, function(post){ return post.story; });
     });
   }
 ])

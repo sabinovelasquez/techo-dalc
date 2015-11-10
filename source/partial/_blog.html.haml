@@ -3,8 +3,12 @@
 		Blog
 	.text-muted.text-center
 		Reflexiona junto a nosotros para alcanzar ciudades más inclusivas
-	%ul.info{ :'ng-controller' => "entriesCtrl" }
-		%li{"ng-repeat" => "entrada in entradas"}
-			%a{ :'href' => '#/blog/{{ entrada.updated.$t }}' }
+	/ %ul.info{ :'ng-controller' => "entriesCtrl" }
+	/ 	%li{"ng-repeat" => "entrada in entradas"}
+	/ 		%a{ :'href' => '#/blog/{{ entrada.updated.$t }}' }
 				
-				{{ entrada.gsx$entradas.$t }}
+	/ 			{{ entrada.gsx$entradas.$t }}
+	%ul.info{ :'ng-controller' => "fbCtrl" }
+		%li.news{ :'ng-repeat' => 'post in posts', :'ng-class' => '["odd"][$index %2]' }
+			%a{ :'href' => 'https://facebook.com/{{post.id}}', :'target' => '_blank' }
+				{{post.message | limitTo : 50 }} {{post.message.length > 50 ? '...' : '' }}
