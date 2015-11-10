@@ -1,13 +1,37 @@
-%section
-	.container
-		.row
-			.col-sm-6
-				%h2.text-center
-					Noticias
-				.text-muted.text-center
-					Conoce los últimos avances hacia una nueva agenda urbana
-				%ul.info{ :'ng-controller' => "newsCtrl" }
-					%li{"ng-repeat" => "noticia in noticias"}
-						{{ noticia.gsx$noticias.$t }}
-
-			= partial 'partial/blog'
+.col-md-6
+	%h2.text-center
+		%span{ :'ng-if' => 'idioma == 1' }
+			Noticias
+		%span{ :'ng-if' => 'idioma == 2' }
+			News
+		%span{ :'ng-if' => 'idioma == 3' }
+			Notícia
+	.text-muted.text-center
+		%span{ :'ng-if' => 'idioma == 1' }
+			Conoce los últimos avances hacia una 
+			%strong
+				Nueva Agenda Urbana
+		%span{ :'ng-if' => 'idioma == 2' }
+			Be aware of the latest news regarding the
+			%strong
+				New Urban Agenda
+		%span{ :'ng-if' => 'idioma == 3' }
+			Conheça os últimos avanços rumo à
+			%strong
+				Nova Agenda Urbana
+	%ul.info{ :'ng-controller' => 'newsCtrl' }
+		%li.news{ :'ng-repeat' => 'noticia in noticias' , :'ng-class' => '["odd"][$index %2]'}
+			%span{ :'ng-if' => 'idioma == 1' }
+				{{ noticia.gsx$esp.$t }}
+			%span{ :'ng-if' => 'idioma == 2' }
+				{{ noticia.gsx$eng.$t }}
+			%span{ :'ng-if' => 'idioma == 3' }
+				{{ noticia.gsx$por.$t }}
+			
+		%li.news.odd.text-center{ :'ng-if' => '!noticias' }
+			%span{ :'ng-if' => 'idioma == 1' }
+				No existen noticias recientes.
+			%span{ :'ng-if' => 'idioma == 2' }
+				There is no recent news.
+			%span{ :'ng-if' => 'idioma == 3' }
+				Não há notícias recentes.

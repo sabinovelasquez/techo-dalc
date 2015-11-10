@@ -2,8 +2,11 @@
 
 var pageId='994782423876423',fbApiId='1514161315573007',fbToken='836ec560d394a3d55ea37ed3a9457994';
 
-var sheetNewsID = '1WzpFRFin-2-spw8Hx7yT-FvOOD0di4kld__JELgtqSk',
-    sheetEntriesID = '1CTo9Bih2V3zlrJycyvKbG1fX5YpUcdMTKq1mNny0veM';
+var sheetInfoID = '1naw4HFJQMkYqqRa5YGiWeq8kB9zO73p6VYpIbkLrXY0',
+    sheetNewsID = '1WzpFRFin-2-spw8Hx7yT-FvOOD0di4kld__JELgtqSk',
+    sheetEntriesID = '1CTo9Bih2V3zlrJycyvKbG1fX5YpUcdMTKq1mNny0veM',
+    sheetDownloadsID = '1q571jZ14UYCepNug2Q05UciGobJkhU3seRW3KBss1o0',
+    sheetDownloadsInfoID = '1eru4TUfsvqhvjxKVHJdV8fW7WjsYmMkCiHkU2wtG2qE';
     
 function sheetUrl(id){
   return 'https://spreadsheets.google.com/feeds/list/' + id + '/od6/public/values?alt=json';
@@ -17,24 +20,9 @@ function timing(time){
   }
 }
 
-
-
 var app = angular
 
-.module('app', ['ngRoute','blogControllers','ui.bootstrap'])
-
-.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-    when('/blog', {
-      templateUrl: 'partials/detail/entry.html',
-      controller: 'EntryDetailCtrl'
-    }).
-    otherwise({
-      redirectTo: '/home'
-    });
-  }
-])
+.module('app', ['ngAnimate','ui.bootstrap'])
 
 .factory('Util', [
   function() {
@@ -48,7 +36,8 @@ var app = angular
         minutes = Math.floor(t / 60) % 60;
         t -= minutes * 60;
         seconds = t % 60;
-        return [days + ' días, ', timing(hours) + ':', timing(minutes) + ':', timing(seconds)].join('');
+
+        return [days + ' d, ', timing(hours) + ':', timing(minutes) + ':', timing(seconds)].join('');
       }
     };
   }
@@ -73,8 +62,10 @@ var app = angular
     };
   }
 ])
-.controller('modalCtrl', ['$scope',
+.controller('gralCtrl', ['$scope',
   function($scope) {
+    
+    $scope.idioma = 1;
 
     $scope.open = function() {
       $scope.showModal = true;
@@ -91,6 +82,13 @@ var app = angular
     };
   }
 ])
+.controller('campaignCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get( sheetUrl(sheetInfoID) )
+    .success(function(response) {
+      $scope.parrafos = response.feed.entry;
+    });
+  }
+])
 .controller('infoCtrl', ['$scope', '$http', 
   function($scope, $http) {
     $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)
@@ -99,7 +97,19 @@ var app = angular
     });
   }
 ])
-
+.controller('downloadsCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.isCollapsed = true;
+  $http.get( sheetUrl(sheetDownloadsInfoID) )
+    .success(function(response) {
+      $scope.downloadinfo = response.feed.entry;
+    });
+  $http.get( sheetUrl(sheetDownloadsID) )
+    .success(function(response) {
+      $scope.downloads = response.feed.entry;
+    });
+  }
+  
+])
 .controller('newsCtrl', ['$scope', '$http', function($scope, $http) {
   $http.get( sheetUrl(sheetNewsID) )
     .success(function(response) {

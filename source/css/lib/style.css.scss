@@ -1,7 +1,7 @@
 @import 'functions';
 
 $primary : #4aa3df;
-
+$light_grey: #ecf0f1;
 
 $lblue: #68b8fc;
 $red: #b62148;
@@ -21,6 +21,16 @@ h1, h2, h3, h4, h5, h6{
 	right:20px;
 	top:20px;
 	color: white;
+	a{
+		margin:5px;
+		padding: 5px;
+		color: white;
+		cursor:pointer;
+		text-decoration: none;
+		&:hover{
+			background: black;
+		}
+	}
 }
 .icon{
 	width:50px;
@@ -97,6 +107,28 @@ header{
 	background: $blue;
 	font-size: 1.2em;
 }
+p.downloads{
+	margin:10px 0 10px 0;
+	button{
+		border: none;
+		background: darken($blue, 30);
+		color: white;
+		&:hover, &:focus{
+			background: darken($blue, 10);;
+			color: white;
+		}
+	}
+}
+ul{
+	margin: 10px 0 10px 0;
+	li.news{
+		color: darken($light_grey, 60);
+		list-style:none;
+		&.odd{
+			background: $light_grey;
+		}
+	}
+}
 section#collab{
 	.col-img{
 		float: left;
@@ -107,6 +139,9 @@ section#collab{
 	}
 	.signature{
 		max-width: 400px;
+		@media screen and (max-width: 640px) {
+			max-width: 100%;
+		}
 	}
 }
 footer{

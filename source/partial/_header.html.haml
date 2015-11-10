@@ -1,16 +1,51 @@
-/ .lang
-/ 	.icon
-/ 		%i.fa.fa-language
+.lang
+	%a{ :'ng-click' => 'idioma = 1' }
+		%i.fa.fa-language
+		ES
+	%a{ :'ng-click' => 'idioma = 2' }
+		%i.fa.fa-language
+		EN
+	%a{ :'ng-click' => 'idioma = 3' }
+		%i.fa.fa-language
+		PT
+
+
 %header
 	.container
 		.top.text-center
-			%h1 Derecho a la Ciudad
-			%p Quedan
+			%h1{ :'ng-if' => 'idioma == 1' }
+				Derecho a la Ciudad
+			%h1{ :'ng-if' => 'idioma == 2' }
+				The Right to the City
+			%h1{ :'ng-if' => 'idioma == 3' }
+				Direito à Cidade
+
+			%p{ :'ng-if' => 'idioma == 1' }
+				Quedan
+			%p{ :'ng-if' => 'idioma == 3' }
+				Faltam
 			%h2
 				%span.timer{ :'countdown' => '', :'date' => 'October 17, 2016 12:00:00' }
-			%p para incidir en la nueva agenda urbana
+			%p{ :'ng-if' => 'idioma == 1' }
+				para incidir en la 
+				%strong
+					Nueva Agenda Urbana
+			%p{ :'ng-if' => 'idioma == 2' }
+				days left to advocate for the Upcoming
+				%strong
+					New Urban Agenda
+			%p{ :'ng-if' => 'idioma == 3' }
+				dias para influenciar na 
+				%strong
+					Nova Agenda Urbana.
+
 			.icon{ :'ng-click' => 'open()' }
 				%i.fa.fa-play
-			Ver video
+			%span{ :'ng-if' => 'idioma == 1' }
+				Ver video
+			%span{ :'ng-if' => 'idioma == 2' }
+				Watch video
+			%span{ :'ng-if' => 'idioma == 3' }
+				Assista o vídeo
 	.bg
 

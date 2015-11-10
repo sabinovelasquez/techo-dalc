@@ -1,5 +1,37 @@
-.col-sm-6
+.col-md-6{ :'ng-controller' => 'downloadsCtrl' }
 	%h2.text-center
-		Descargas
-	.text-muted.text-center
-		Reflexiona junto a nosotros para alcanzar ciudades más inclusivas
+		%span{ :'ng-if' => 'idioma == 1' }
+			Descargas
+		%span{ :'ng-if' => 'idioma == 2' }
+			Downloads
+		%span{ :'ng-if' => 'idioma == 3' }
+			Transferências
+	.text-muted.text-center{ :'ng-repeat' => 'download in downloadinfo' }
+		%span{ :'ng-if' => 'idioma == 1' }
+			{{ download.gsx$esp.$t }}
+		%span{ :'ng-if' => 'idioma == 2' }
+			{{ download.gsx$eng.$t }}
+		%span{ :'ng-if' => 'idioma == 3' }
+			{{ download.gsx$por.$t }}
+
+	%p.downloads.text-center
+		%button.btn.btn-default{ :'ng-click' => 'isCollapsed = !isCollapsed'  }
+			%i.fa.fa-download 
+			%span{ :'ng-show' => 'isCollapsed', :'ng-if' => 'idioma == 1'  }
+				Ver descargas
+			%span{ :'ng-show' => 'isCollapsed', :'ng-if' => 'idioma == 2'  }
+				View downloads
+			%span{ :'ng-show' => 'isCollapsed', :'ng-if' => 'idioma == 3'  }
+				Ver downloads
+
+			%span{ :'ng-show' => '!isCollapsed', :'ng-if' => 'idioma == 1'  }
+				Ocultar descargas
+			%span{ :'ng-show' => '!isCollapsed', :'ng-if' => 'idioma == 2'  }
+				Hide downloads
+			%span{ :'ng-show' => '!isCollapsed', :'ng-if' => 'idioma == 3'  }
+				Esconder de downloads
+				
+	%ul.info{ :'uib-collapse' => 'isCollapsed'}
+		%li{ :'ng-repeat' => 'download in downloads' }
+			%a.download{ :'href' => '{{ download.gsx$link.$t }}', :'target' => '_blank', :'uib-tooltip' => '{{download.gsx$nombre.$t}} - {{download.gsx$fuente.$t }}',  :'tooltip-placement' => 'right' }
+				{{ download.gsx$nombre.$t | limitTo : 50 }}{{download.gsx$nombre.$t.length > 50 ? '...' : ''}}
