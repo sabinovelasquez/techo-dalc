@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore config file
-config.rb
+.config.rb
 
 # Ignore the build directory
 /build

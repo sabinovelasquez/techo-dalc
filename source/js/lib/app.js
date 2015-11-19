@@ -91,10 +91,10 @@ var app = angular
 ])
 .controller('fbCtrl', ['$scope', '$http', 
   function($scope, $http) {
-    $http.get('https://graph.facebook.com/'+pageId+'/feed?access_token='+fbApiId+'|'+fbToken)
+    $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)
     .success(function(response) {
-      console.log(response.data)
-      $scope.posts = _.reject(response.data, function(post){ return post.story; });
+      $scope.posts = _.reject(response.data, function(post){ return !post.message; });
+      console.log($scope.posts)
     });
   }
 ])
