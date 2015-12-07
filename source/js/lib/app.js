@@ -67,6 +67,10 @@ var app = angular
     
     $scope.idioma = 1;
 
+    $scope.langEv = function(ln) {
+      ga('send', 'event', 'Idioma', 'click', 'idioma: '+ln );
+    }
+
     $scope.open = function() {
       $scope.showModal = true;
     };
@@ -94,8 +98,10 @@ var app = angular
     $http.get('https://graph.facebook.com/'+pageId+'/posts?access_token='+fbApiId+'|'+fbToken)
     .success(function(response) {
       $scope.posts = _.reject(response.data, function(post){ return !post.message; });
-      console.log($scope.posts)
     });
+    $scope.newsEv = function(post) {
+      ga('send', 'event', 'News', 'click', 'noticia: '+post.message );
+    }
   }
 ])
 .controller('downloadsCtrl', ['$scope', '$http', function($scope, $http) {
@@ -108,8 +114,19 @@ var app = angular
     .success(function(response) {
       $scope.downloads = response.feed.entry;
     });
+  $scope.downEv = function(name) {
+    var downloadtext;
+    if(name.$t){
+      downloadtext=name.$t;
+    }else{
+      downloadtext=name;
+    }
+    
+    ga('send', 'event', 'Downloads', 'click', 'descarga: '+downloadtext );
   }
-  
+
+  }
+
 ])
 .controller('newsCtrl', ['$scope', '$http', function($scope, $http) {
   $http.get( sheetUrl(sheetNewsID) )
